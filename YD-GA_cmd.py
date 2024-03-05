@@ -7,33 +7,35 @@ import pandas as pd
 #import matplotlib.pyplot as plt
 
 jiBan = {
-         '龙':[2],
-         '虚空':[2,4],
-         '帝国':[2,4],
-         '贵族':[3,6],
-         '忍者':[1,4],
-         '暗影':[2],
-         '海盗':[3],
-         '极地':[2,4,6],
-         '狂野':[2,4],
-         '恶魔':[2,4,6],
-         '浪人':[1],
-         '机器人':[1],
-         '约德尔人':[3,6,9],
-         '海克斯科技':[2,4],
-         '枪手':[2,4],
-         '刺客':[3,6,9],
-         '斗士':[2,4,6],
-         '护卫':[2],
-         '骑士':[2,4,6],
-         '剑士':[3,6,9],
-         '游侠':[2,4],
-         '元素使':[3],
-         '换形师':[3,6],
-         '法师':[3,6,9]
+    "决斗大师": [2, 4, 6],
+    "灵魂莲华": [3, 5, 7],
+    "迅捷射手": [2, 4],
+    "剪纸仙灵": [3, 5, 7, 10],
+    "幽魂": [2, 4, 6, 8],
+    "夜幽": [2, 4, 6, 8],
+    "斗士": [2, 4, 6, 8],
+    "狙神": [2, 4, 6],
+    "神谕者": [2, 4, 6],
+    "秘术护卫": [2, 4, 6],
+    "山海绘卷": [3, 5, 7, 10],
+    "天神": [2, 3, 4, 5, 6, 7],
+    "法师": [2, 4, 6, 8],
+    "武仙子": [2,3,4],
+    "永恒之森": [2, 4, 6],
+    "护卫": [2, 4, 6],
+    "圣贤": [2, 3, 4,5],
+    "天龙之子": [2, 3, 4, 5],
+    "裁决使": [2, 4],
+    "青花瓷": [2, 4, 6],
+    "福星": [3, 5, 7],
+    "齐天大圣": [1],
+    "画圣": [1],
+    "仙侣": [1],
+    "灵魂行者": [1],
+    "墨之影": [3,5,7],
          }
 
-shovel_add = ['剑士','极地','恶魔','约德尔人','刺客','骑士','法师']
+shovel_add = ['幽魂','山海绘卷','剪纸仙灵','灵魂莲华','青花瓷','夜幽','永恒之森','天神']
 
 
 def getHeroid(names, heros_info_short):
@@ -88,13 +90,16 @@ def calc(team, show= 0):
                     else:
                         break
                 #组成人口越多，得分越高
-                score += flag**2
+                if k == '护卫':
+                    score += flag*2
+                elif k == '斗士':
+                      score += flag * 2
+                elif k == '法师':
+                    score += flag * 3.5
+                else:
+                    score += flag**2
                 if pnum >= jiBan[k][0] and show:
                     print('达成{}{}'.format(flag,k))
-            elif team[k] == 1 or team[k] == 4:
-                score += team[k]
-                if show:
-                    print('达成{}{}'.format(team[k],k))
             else:
                 continue
     return score
@@ -270,11 +275,11 @@ def main(heros_list= [], team_pnum= 8, shovel = False, gens = 100, sample = 50):
 
     team, gold = teamtype(besTeam, heros_info= heros_info)
     print(team)
-    teamScore, change = calculateTeamScore(team= team, show = 1, shovel= shovel)
-#     print(teamScore)
-	if shovel:
-		print('铲子变个{}'.format(change))
-    heros = getHeroFromid(besTeam, heros_info= heros_info)
+    teamScore, change = calculateTeamScore(team=team, show=1, shovel=shovel)
+    #     print(teamScore)
+    if shovel:
+        print('铲子变个{}'.format(change))
+    heros = getHeroFromid(besTeam, heros_info=heros_info)
     print(heros)
     
 #    plt.plot(list(range(gens)), maxscores, 'k.')

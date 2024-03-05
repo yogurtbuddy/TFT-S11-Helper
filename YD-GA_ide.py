@@ -20,7 +20,7 @@ jiBan = {
     "山海绘卷": [3, 5, 7, 10],
     "天神": [2, 3, 4, 5, 6, 7],
     "法师": [2, 4, 6, 8],
-    "武仙子": [2, 3, 4],
+    "武仙子": [2,3,4],
     "永恒之森": [2, 4, 6],
     "护卫": [2, 4, 6],
     "圣贤": [2, 3, 4,5],
@@ -291,5 +291,5 @@ def main(heros_list= [], team_pnum= 8, shovel = False, gens = 100, sample = 50):
     plt.show()
 
 if __name__ == '__main__':
-    main(heros_list= [], team_pnum= 8, shovel = True, gens = 5000, sample = 1000)
+    main(heros_list= [], team_pnum= 8, shovel = True, gens = 1000, sample = 500)
 
